@@ -8,13 +8,13 @@ class Db{
 		//try and connect to database
 		if(!isset(self::$conn)){
 			//Load configuration as an array
-			$config = parse_ini_file(''); //input .ini file
+			$config = parse_ini_file('./config.ini'); //input .ini file
 			
 			//get details from .ini file
-			protected $uname = $config['username'];
-			protected $pass = $config['password'];
-			protected $dbname = $config['dbname'];
-			protected $host = $config['host'];
+			$uname = $config['username'];
+			$pass = $config['password'];
+			$dbname = $config['dbname'];
+			$host = $config['host'];
 			self::$conn = new mysqli($host,$uname,$pass,$dbname);
 		}
 		
@@ -57,9 +57,21 @@ class Db{
 		$result = $this->query($query);
 		if($result === false){
 			echo error();
+		}else{
+			return true;
 		}
 	}
 	
+	public function remove($query){
+		$result = $this->query($query);
+		if($result === false){
+			echo error();
+		}else{
+			return true;
+		}
+	}
+	
+	//escape string
 	public function escapeString($value){
 		$conn = $this->connect();
 		return "'".$conn->real_escape_string($value)."'";
