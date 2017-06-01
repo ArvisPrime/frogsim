@@ -56,7 +56,7 @@ class Db{
 	public function insert($query){
 		$result = $this->query($query);
 		if($result === false){
-			echo error();
+			echo $this->error();
 		}else{
 			return true;
 		}
@@ -65,7 +65,7 @@ class Db{
 	public function remove($query){
 		$result = $this->query($query);
 		if($result === false){
-			echo error();
+			echo $this->error();
 		}else{
 			return true;
 		}
